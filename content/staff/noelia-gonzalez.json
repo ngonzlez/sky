@@ -1,0 +1,10 @@
+{
+  "name": "Noelia González",
+  "role": "Clinica medica",
+  "photo": "/staff/noelia-gonzalez/photo.png",
+  "schedule": "Martes y Jueves · 15:00 a 20:30 hs",
+  "modality": "Presencial",
+  "services": [
+    "Clinica medica"
+  ]
+}
