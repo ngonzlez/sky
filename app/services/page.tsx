@@ -1,13 +1,15 @@
 import Navbar from '@/components/Navbar'
-import Hero from '@/components/Hero'
+import Services from '@/components/Services'
 import Footer from '@/components/Footer'
 import WhatsAppButton from '@/components/WhatsAppButton'
 
-export default function Home() {
+export default function ServicesPage() {
   return (
     <main>
       <Navbar />
-      <Hero />
+      <div className="pt-14 md:pt-16">
+        <Services />
+      </div>
       <Footer />
       <WhatsAppButton />
     </main>
