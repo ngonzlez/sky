@@ -1,10 +1,11 @@
 import { config, collection, fields, singleton } from '@keystatic/core'
 
 export default config({
-  storage:
-    process.env.KEYSTATIC_STORAGE === 'github'
-      ? { kind: 'github', repo: { owner: 'ngonzlez', name: 'sky' } }
-      : { kind: 'local' },
+  storage: process.env.NODE_ENV === 'production'
+    ? { kind: 'cloud' }
+    : { kind: 'local' },
+
+  cloud: { project: 'ngonzlez/skyclinicametabolica' },
 
   ui: {
     brand: { name: 'Sky Clínica Metabólica' },
