@@ -5,7 +5,7 @@ export default config({
     ? { kind: 'cloud' }
     : { kind: 'local' },
 
-  cloud: { project: 'ngonzlez/skyclinicametabolica' },
+  cloud: { project: 'ngitalpy/skyclinicametabolica' },
 
   ui: {
     brand: { name: 'Sky Clínica Metabólica' },
