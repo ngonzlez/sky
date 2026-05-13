@@ -50,10 +50,15 @@ export default function About() {
               y confiables de la masa muscular, grasa corporal total, grasa visceral, estado de hidratación
               y otros parámetros útiles para el manejo integral del paciente.
             </p>
-            <p className="text-sm sm:text-base text-muted leading-relaxed">
+            <p className="text-sm sm:text-base text-muted leading-relaxed mb-4">
               Nuestro enfoque combina <strong className="text-dark">ciencia, innovación y atención personalizada</strong>,
               brindando herramientas concretas para mejorar la calidad de vida, prevenir enfermedades y
               potenciar el bienestar de cada paciente.
+            </p>
+            <p className="text-sm sm:text-base text-muted leading-relaxed">
+              Con esto, <strong className="text-dark">Sky Clínica Metabólica</strong> forma parte de un equipo
+              internacional de instituciones especializadas en composición corporal, alineadas con los más altos
+              estándares de calidad, innovación y excelencia médica.
             </p>
           </motion.div>
 
