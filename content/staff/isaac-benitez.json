@@ -1,0 +1,14 @@
+{
+  "name": "Dr. Isaac Benítez",
+  "role": "Esp. Clínica Médica y Ecografía Cardiovascular · Medicina del Deporte",
+  "photo": "/staff/isaac.png",
+  "schedule": "Martes y Jueves · 15:00 a 20:30 hs",
+  "modality": "Presencial y teleconsulta",
+  "services": [
+    "Asesoramiento y seguimiento en descenso de peso con inyectables",
+    "Consultas clínicas y para deportistas",
+    "Ecodoppler de vasos de cuello",
+    "Ecocardiografías",
+    "Electrocardiogramas"
+  ]
+}

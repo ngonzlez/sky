@@ -1,9 +1,10 @@
 'use client'
+import siteConfig from '@/content/config.json'
 
 export default function WhatsAppButton() {
   return (
     <a
-      href="https://wa.me/595972324258"
+      href={`https://wa.me/${siteConfig.whatsapp}`}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Contactar por WhatsApp"

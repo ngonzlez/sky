@@ -3,23 +3,9 @@ import { motion } from 'framer-motion'
 import { fadeInUp, fadeIn, stagger } from '@/lib/animations'
 import Image from 'next/image'
 import { Clock, Video } from 'lucide-react'
+import isaacData from '@/content/staff/isaac-benitez.json'
 
-const team = [
-  {
-    name: 'Dr. Isaac Benítez',
-    role: 'Esp. Clínica Médica y Ecografía Cardiovascular · Medicina del Deporte',
-    photo: '/staff/isaac.png',
-    schedule: 'Martes y Jueves · 15:00 a 20:30 hs',
-    modality: 'Presencial y teleconsulta',
-    services: [
-      'Asesoramiento y seguimiento en descenso de peso con inyectables',
-      'Consultas clínicas y para deportistas',
-      'Ecodoppler de vasos de cuello',
-      'Ecocardiografías',
-      'Electrocardiogramas',
-    ],
-  },
-]
+const team = [isaacData]
 
 export default function Staff() {
   return (
@@ -58,25 +44,24 @@ export default function Staff() {
               className="bg-white rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow overflow-hidden"
             >
               <div className="grid md:grid-cols-3 gap-0">
-                {/* Photo */}
                 <div className="relative bg-gradient-to-br from-primary-50 to-primary-100 flex items-end justify-center min-h-56 md:min-h-full">
-                  <Image
-                    src={member.photo}
-                    alt={member.name}
-                    width={280}
-                    height={320}
-                    className="object-contain object-bottom w-full max-h-72 md:max-h-full"
-                  />
+                  {member.photo && (
+                    <Image
+                      src={member.photo}
+                      alt={member.name}
+                      width={280}
+                      height={320}
+                      className="object-contain object-bottom w-full max-h-72 md:max-h-full"
+                    />
+                  )}
                 </div>
 
-                {/* Info */}
                 <div className="md:col-span-2 p-6 md:p-8 flex flex-col gap-5">
                   <div>
                     <h3 className="text-xl sm:text-2xl font-bold text-dark mb-1">{member.name}</h3>
                     <p className="text-muted text-sm leading-relaxed">{member.role}</p>
                   </div>
 
-                  {/* Schedule + modality */}
                   <div className="flex flex-col sm:flex-row gap-3">
                     <div className="flex items-center gap-2 bg-primary-50 rounded-xl px-4 py-2.5 border border-primary-100">
                       <Clock size={15} className="text-primary-600 flex-shrink-0" />
@@ -88,7 +73,6 @@ export default function Staff() {
                     </div>
                   </div>
 
-                  {/* Services */}
                   <div>
                     <p className="text-xs font-semibold text-dark uppercase tracking-wider mb-2">Servicios</p>
                     <ul className="flex flex-col gap-1.5">

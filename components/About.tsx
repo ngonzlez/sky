@@ -4,12 +4,9 @@ import { fadeInUp, fadeIn } from '@/lib/animations'
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import galleryData from '@/content/gallery.json'
 
-const photos = [
-  { src: '/fotosinterior/foto1.jpeg', alt: 'Equipo seca de análisis de composición corporal' },
-  { src: '/fotosinterior/foto2.jpeg', alt: 'Sala de espera Sky Clínica Metabólica' },
-  { src: '/fotosinterior/foto3.jpeg', alt: 'Recepción Sky Clínica Metabólica' },
-]
+const photos = galleryData.photos
 
 export default function About() {
   const [current, setCurrent] = useState(0)
@@ -49,8 +46,6 @@ export default function About() {
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
-
-          {/* Text */}
           <motion.div variants={fadeInUp}>
             <span className="text-xs sm:text-sm font-semibold text-primary-600 uppercase tracking-widest mb-3 block">
               Quiénes somos
@@ -69,7 +64,6 @@ export default function About() {
             </p>
           </motion.div>
 
-          {/* Carousel */}
           <motion.div variants={fadeInUp} className="relative rounded-2xl overflow-hidden shadow-md aspect-[4/3] bg-gray-100">
             <AnimatePresence mode="wait" custom={direction}>
               <motion.div
@@ -95,7 +89,6 @@ export default function About() {
               </motion.div>
             </AnimatePresence>
 
-            {/* Prev / Next */}
             <button onClick={prev} aria-label="Anterior"
               className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center hover:bg-white transition-colors shadow">
               <ChevronLeft size={16} className="text-dark" />
@@ -105,7 +98,6 @@ export default function About() {
               <ChevronRight size={16} className="text-dark" />
             </button>
 
-            {/* Dots */}
             <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
               {photos.map((_, i) => (
                 <button key={i} onClick={() => go(i)} aria-label={`Foto ${i + 1}`}

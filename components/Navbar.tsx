@@ -12,7 +12,8 @@ const navLinks = [
   { label: 'Equipo', href: '/staff' },
 ]
 
-const WA_LINK = 'https://wa.me/595972324258'
+import siteConfig from '@/content/config.json'
+const WA_LINK = `https://wa.me/${siteConfig.whatsapp}`
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)

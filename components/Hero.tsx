@@ -2,8 +2,9 @@
 import { motion } from 'framer-motion'
 import { ArrowRight, Activity, BarChart3, HeartPulse } from 'lucide-react'
 import Image from 'next/image'
+import siteConfig from '@/content/config.json'
 
-const WA_LINK = 'https://wa.me/595972324258'
+const WA_LINK = `https://wa.me/${siteConfig.whatsapp}`
 
 const stats = [
   { icon: Activity, label: 'Composición corporal', value: 'mBCA seca' },
