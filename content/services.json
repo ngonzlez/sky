@@ -29,6 +29,11 @@
       "title": "Seguimiento y Control",
       "desc": "Consultas de seguimiento periódicas para medir progreso, ajustar objetivos y mantener resultados.",
       "icon": "CalendarCheck"
+    },
+    {
+      "title": "Teleconsulta",
+      "desc": "Servicio de Teleconsulta",
+      "icon": "Scale"
     }
   ]
 }
