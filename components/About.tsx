@@ -1,27 +1,43 @@
 'use client'
-import { motion } from 'framer-motion'
-import { fadeInUp, fadeIn, stagger } from '@/lib/animations'
-import { CheckCircle2, Award, Microscope } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { fadeInUp, fadeIn } from '@/lib/animations'
+import Image from 'next/image'
+import { useState, useEffect } from 'react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 
-const pillars = [
-  {
-    icon: Microscope,
-    title: 'Tecnología seca',
-    desc: 'Equipos alemanes de última generación para mediciones altamente precisas de composición corporal.',
-  },
-  {
-    icon: Award,
-    title: 'Estándares internacionales',
-    desc: 'Parte de la red global de centros especializados en composición corporal con los más altos estándares.',
-  },
-  {
-    icon: CheckCircle2,
-    title: 'Atención personalizada',
-    desc: 'Cada paciente recibe un análisis completo adaptado a sus objetivos de salud y bienestar.',
-  },
+const photos = [
+  { src: '/fotosinterior/foto1.jpeg', alt: 'Equipo seca de análisis de composición corporal' },
+  { src: '/fotosinterior/foto2.jpeg', alt: 'Sala de espera Sky Clínica Metabólica' },
+  { src: '/fotosinterior/foto3.jpeg', alt: 'Recepción Sky Clínica Metabólica' },
 ]
 
 export default function About() {
+  const [current, setCurrent] = useState(0)
+  const [direction, setDirection] = useState(1)
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setDirection(1)
+      setCurrent((c) => (c + 1) % photos.length)
+    }, 4000)
+    return () => clearInterval(timer)
+  }, [])
+
+  const go = (idx: number) => {
+    setDirection(idx > current ? 1 : -1)
+    setCurrent(idx)
+  }
+
+  const prev = () => {
+    setDirection(-1)
+    setCurrent((c) => (c - 1 + photos.length) % photos.length)
+  }
+
+  const next = () => {
+    setDirection(1)
+    setCurrent((c) => (c + 1) % photos.length)
+  }
+
   return (
     <motion.section
       id="about"
@@ -32,7 +48,9 @@ export default function About() {
       viewport={{ once: true, margin: '-60px' }}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="grid md:grid-cols-2 gap-12 items-start">
+        <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
+
+          {/* Text */}
           <motion.div variants={fadeInUp}>
             <span className="text-xs sm:text-sm font-semibold text-primary-600 uppercase tracking-widest mb-3 block">
               Quiénes somos
@@ -41,49 +59,60 @@ export default function About() {
               El primer centro de composición corporal en Paraguay
             </h2>
             <p className="text-sm sm:text-base text-muted leading-relaxed mb-4">
-              Es el primer centro especializado en análisis de composición corporal en Paraguay,
+              Somos el primer centro especializado en análisis de composición corporal en Paraguay,
               enfocado en la evaluación precisa del estado metabólico y la optimización de la salud integral.
             </p>
-            <p className="text-sm sm:text-base text-muted leading-relaxed mb-4">
-              Trabajamos de la mano con la prestigiosa marca alemana <strong className="text-dark">seca</strong>,
-              líder mundial en tecnología médica, cuyos equipos permiten obtener mediciones altamente precisas
-              y confiables de la masa muscular, grasa corporal total, grasa visceral, estado de hidratación
-              y otros parámetros útiles para el manejo integral del paciente.
-            </p>
-            <p className="text-sm sm:text-base text-muted leading-relaxed mb-4">
-              Nuestro enfoque combina <strong className="text-dark">ciencia, innovación y atención personalizada</strong>,
-              brindando herramientas concretas para mejorar la calidad de vida, prevenir enfermedades y
-              potenciar el bienestar de cada paciente.
-            </p>
             <p className="text-sm sm:text-base text-muted leading-relaxed">
-              Con esto, <strong className="text-dark">Sky Clínica Metabólica</strong> forma parte de un equipo
-              internacional de instituciones especializadas en composición corporal, alineadas con los más altos
-              estándares de calidad, innovación y excelencia médica.
+              Trabajamos con la prestigiosa marca alemana <strong className="text-dark">seca</strong>,
+              líder mundial en tecnología médica, que permite medir con alta precisión la masa muscular,
+              grasa corporal, grasa visceral, hidratación y más parámetros clave para el manejo integral del paciente.
             </p>
           </motion.div>
 
-          <div>
-            <motion.div
-              className="flex flex-col gap-5"
-              variants={stagger}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-            >
-              {pillars.map(({ icon: Icon, title, desc }) => (
-                <motion.div key={title} variants={fadeInUp}
-                  className="flex gap-4 p-5 rounded-2xl bg-primary-50 border border-primary-100">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center mt-0.5">
-                    <Icon size={18} className="text-primary-600" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-dark text-sm sm:text-base mb-1">{title}</h3>
-                    <p className="text-muted text-xs sm:text-sm leading-relaxed">{desc}</p>
-                  </div>
-                </motion.div>
+          {/* Carousel */}
+          <motion.div variants={fadeInUp} className="relative rounded-2xl overflow-hidden shadow-md aspect-[4/3] bg-gray-100">
+            <AnimatePresence mode="wait" custom={direction}>
+              <motion.div
+                key={current}
+                custom={direction}
+                variants={{
+                  enter: (d: number) => ({ x: d > 0 ? '100%' : '-100%', opacity: 0 }),
+                  center: { x: 0, opacity: 1, transition: { duration: 0.45, ease: 'easeOut' } },
+                  exit: (d: number) => ({ x: d > 0 ? '-100%' : '100%', opacity: 0, transition: { duration: 0.35 } }),
+                }}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                className="absolute inset-0"
+              >
+                <Image
+                  src={photos[current].src}
+                  alt={photos[current].alt}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Prev / Next */}
+            <button onClick={prev} aria-label="Anterior"
+              className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center hover:bg-white transition-colors shadow">
+              <ChevronLeft size={16} className="text-dark" />
+            </button>
+            <button onClick={next} aria-label="Siguiente"
+              className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center hover:bg-white transition-colors shadow">
+              <ChevronRight size={16} className="text-dark" />
+            </button>
+
+            {/* Dots */}
+            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
+              {photos.map((_, i) => (
+                <button key={i} onClick={() => go(i)} aria-label={`Foto ${i + 1}`}
+                  className={`w-2 h-2 rounded-full transition-all ${i === current ? 'bg-white w-5' : 'bg-white/50'}`} />
               ))}
-            </motion.div>
-          </div>
+            </div>
+          </motion.div>
         </div>
       </div>
     </motion.section>
